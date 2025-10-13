@@ -2,14 +2,11 @@
 title: "Rural Windfall or a New Resource Curse? Coca, Income, and Civil Conflict in Colombia"
 subtitle: "Based on Angrist & Kugler (2008)"
 author:
-  - name: "[Author 1 Name]"
-    affiliation: "[Your Institution]"
-    email: "[email1@example.com]"
+  - name: "Maximilian Birkle"
+    email: "maximilian.birkle@studnets.uni-mannheim.de"
   - name: "[Author 2 Name]"
-    affiliation: "[Your Institution]"
     email: "[email2@example.com]"
   - name: "[Author 3 Name]"
-    affiliation: "[Your Institution]"
     email: "[email3@example.com]"
 date: "`r Sys.Date()`"
 output:
@@ -134,7 +131,7 @@ glimpse(data)
 **Tasks:**
 
 1. Use pre-treatment years (1990-1993)
-2. Estimate: outcome = α + β·year + γ·grow + δ·(grow×year) + u
+2. Estimate: outcome = $\alpha + \beta ·year + \gamma·grow + \delta·(grow × year) + u$
 3. Test if grow×year interactions are jointly zero (year as linear and categorical)
 4. Create graph of average outcome by year and group
 
@@ -169,7 +166,7 @@ glimpse(data)
 
 ---
 
-# Q5. Placebo DiD Test 🧠
+# Q5. Placebo DiD Test 
 
 **Tasks:**
 
@@ -277,7 +274,7 @@ glimpse(data)
 
 **Analytical proof:**
 
-[Show that β₃ = (Ȳ₁,₁ - Ȳ₁,₀) - (Ȳ₀,₁ - Ȳ₀,₀)]
+[Show that $\beta_3 = (\bar{Y}_{1,1} - \bar{Y}_{1,0}) - (\bar{Y}_{0,1} - \bar{Y}_{0,0})$
 
 ---
 
