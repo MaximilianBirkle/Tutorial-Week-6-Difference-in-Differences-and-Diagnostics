@@ -1,4 +1,4 @@
-*Tutorial Week 6: Difference-in-Differences and Diagnostics*
+#Tutorial Week 6: Difference-in-Differences and Diagnostics
 **Assignment.**  Please do in groups of 2-3. You will have two weeks.  Each member of the group should hand in one assignment, but please put everyone’s name on it.
 
 Please look over the paper sufficiently to understand the data and nature of the design.
