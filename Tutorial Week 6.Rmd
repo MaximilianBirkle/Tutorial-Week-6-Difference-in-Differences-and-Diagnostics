@@ -3,12 +3,16 @@ title: "Rural Windfall or a New Resource Curse? Coca, Income, and Civil Conflict
 subtitle: "Based on Angrist & Kugler (2008)"
 author: "Group Members: [Name 1], [Name 2], [Name 3]"
 date: "`r Sys.Date()`"
+date: "`r Sys.Date()`"
 output:
   html_document:
     toc: true
     toc_float: true
     code_folding: show
     theme: flatly
+  github_document:
+    toc: true
+    html_preview: true
 ---
 
 ```{r setup, include=FALSE}
