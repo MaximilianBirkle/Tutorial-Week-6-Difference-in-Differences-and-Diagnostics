@@ -1,8 +1,16 @@
 ---
 title: "Rural Windfall or a New Resource Curse? Coca, Income, and Civil Conflict in Colombia"
 subtitle: "Based on Angrist & Kugler (2008)"
-author: "Group Members: [Name 1], [Name 2], [Name 3]"
-date: "`r Sys.Date()`"
+author:
+  - name: "[Author 1 Name]"
+    affiliation: "[Your Institution]"
+    email: "[email1@example.com]"
+  - name: "[Author 2 Name]"
+    affiliation: "[Your Institution]"
+    email: "[email2@example.com]"
+  - name: "[Author 3 Name]"
+    affiliation: "[Your Institution]"
+    email: "[email3@example.com]"
 date: "`r Sys.Date()`"
 output:
   pdf_document:
@@ -11,6 +19,7 @@ output:
     number_sections: true
     fig_caption: true
     keep_tex: false
+    latex_engine: xelatex
   github_document:
     toc: true
     html_preview: true
@@ -298,7 +307,7 @@ glimpse(data)
 
 **Discussion:**
 
-[Does β₃ change? Do covariates matter? Which specification is most credible?]
+[Does $\beta_3$ change? Do covariates matter? Which specification is most credible?]
 
 ---
 
