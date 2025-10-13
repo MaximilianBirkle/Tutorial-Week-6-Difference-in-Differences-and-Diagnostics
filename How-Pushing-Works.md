@@ -178,24 +178,128 @@ git push
 
 ---
 
-## Quick Setup for Windows Users
+## First Time Setup (All Users - Mac & Windows)
 
-### First Time Setup:
+### Step 1: Install Required Software
 
-1. **Install Git:** Download from https://git-scm.com/download/win
-2. **Configure Git:**
-   ```bash
-   git config --global user.name "Your Name"
-   git config --global user.email "your.email@example.com"
+1. **Git:** 
+   - Mac: Download from https://git-scm.com/download/mac (or install via Xcode)
+   - Windows: Download from https://git-scm.com/download/win
+   
+2. **R:** Download from https://cran.r-project.org/
+
+3. **RStudio:** Download from https://posit.co/download/rstudio-desktop/
+
+4. **LaTeX (for PDF knitting):**
+   - Open R or RStudio and run:
+   ```r
+   install.packages('tinytex')
+   tinytex::install_tinytex()
    ```
-3. **Clone the repository:**
-   ```bash
-   git clone https://github.com/MaximilianBirkle/Tutorial-Week-6-Difference-in-Differences-and-Diagnostics.git
+   - Wait 5-10 minutes for installation to complete
+   - Restart RStudio after installation
+
+### Step 2: Configure Git
+
+Open Terminal (Mac) or Git Bash (Windows):
+
+```bash
+git config --global user.name "Your Full Name"
+git config --global user.email "your.email@example.com"
+```
+
+**Important:** Use the same email as your GitHub account!
+
+### Step 3: Get GitHub Personal Access Token
+
+1. Go to https://github.com/settings/tokens
+2. Click "Personal access tokens" → "Tokens (classic)"
+3. Click "Generate new token" → "Generate new token (classic)"
+4. Give it a name (e.g., "RStudio Laptop")
+5. Set expiration (e.g., 90 days)
+6. Check the box for **`repo`** (full control of repositories)
+7. Click "Generate token" at the bottom
+8. **Copy the token immediately!** (starts with `ghp_...`)
+9. Save it somewhere safe (you'll need it soon)
+
+### Step 4: Clone the Repository
+
+**Option A: Using RStudio (Recommended)**
+
+1. Open RStudio
+2. File → New Project → Version Control → Git
+3. **Repository URL:** 
    ```
-4. **Navigate into the folder:**
-   ```bash
-   cd Tutorial-Week-6-Difference-in-Differences-and-Diagnostics
+   https://github.com/MaximilianBirkle/Tutorial-Week-6-Difference-in-Differences-and-Diagnostics.git
    ```
+4. **Project directory name:** Will auto-fill
+5. **Create project as subdirectory of:** Choose a location (e.g., Documents)
+6. Click "Create Project"
+7. When prompted for credentials:
+   - Username: Your GitHub username
+   - Password: **Paste your Personal Access Token** (not your GitHub password!)
+
+**Option B: Using Terminal/Git Bash**
+
+**Mac:**
+```bash
+cd ~/Documents
+git clone https://github.com/MaximilianBirkle/Tutorial-Week-6-Difference-in-Differences-and-Diagnostics.git
+cd Tutorial-Week-6-Difference-in-Differences-and-Diagnostics
+```
+
+**Windows (Git Bash):**
+```bash
+cd /c/Users/YourUsername/Documents
+git clone https://github.com/MaximilianBirkle/Tutorial-Week-6-Difference-in-Differences-and-Diagnostics.git
+cd Tutorial-Week-6-Difference-in-Differences-and-Diagnostics
+```
+
+When prompted:
+- Username: Your GitHub username  
+- Password: **Your Personal Access Token**
+
+### Step 5: Install Required R Packages
+
+Open the project in RStudio and run:
+
+```r
+# Install all required packages
+install.packages(c(
+  "tidyverse",    # Data manipulation and visualization
+  "haven",        # Reading data files
+  "knitr",        # Tables
+  "kableExtra",   # Enhanced tables
+  "broom",        # Tidy regression output
+  "lmtest",       # Hypothesis testing
+  "car",          # Linear hypothesis tests
+  "gridExtra"     # Multiple plots
+))
+```
+
+This may take 5-15 minutes depending on your internet connection.
+
+### Step 6: Test Everything Works
+
+1. Open `Tutorial Week 6.Rmd` in RStudio
+2. Try knitting to PDF: Click "Knit" button (or Ctrl+Shift+K / Cmd+Shift+K)
+3. If it successfully creates a PDF, you're all set! ✅
+
+### Step 7: Configure Git Credentials in RStudio (Optional but Recommended)
+
+This saves your token so you don't have to enter it every time:
+
+```r
+# Install credential helper packages
+install.packages(c("usethis", "gitcreds"))
+
+# Store your token
+gitcreds::gitcreds_set()
+```
+
+When prompted, paste your Personal Access Token.
+
+Now RStudio will remember your credentials!
 
 ---
 
