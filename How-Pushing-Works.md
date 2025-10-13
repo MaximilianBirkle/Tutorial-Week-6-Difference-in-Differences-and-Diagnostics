@@ -2,7 +2,7 @@
 
 ## For Mac Users (Terminal)
 
-### Step 1: Navigate to Project Folder
+### Step 1: Navigate to Project Folder (Example folder from my directory)
 ```bash
 cd "/Users/maximilianbirkle/Assignment 4/Tutorial-Week-6-Difference-in-Differences-and-Diagnostics"
 ```
