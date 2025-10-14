@@ -2,12 +2,9 @@
 title: "Rural Windfall or a New Resource Curse? Coca, Income, and Civil Conflict in Colombia"
 subtitle: "Based on Angrist & Kugler (2008)"
 author:
-  - name: "Maximilian Birkle"
-    email: "maximilian.birkle@studnets.uni-mannheim.de"
-  - name: "[Author 2 Name]"
-    email: "[email2@example.com]"
-  - name: "[Author 3 Name]"
-    email: "[email3@example.com]"
+  - Maximilian Birkle
+  - [Author 2 Name]
+  - [Author 3 Name]
 date: "`r Sys.Date()`"
 output:
   pdf_document:
@@ -22,14 +19,10 @@ output:
     html_preview: true
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, 
                       fig.width = 10, fig.height = 6)
-```
-
-# Load Packages
-
-```{r load-packages}
+# Setup 
 library(tidyverse)    # Data manipulation and visualization
 library(haven)        # Reading data files
 library(knitr)        # Tables
@@ -38,15 +31,10 @@ library(broom)        # Tidy regression output
 library(lmtest)       # Hypothesis testing
 library(car)          # Linear hypothesis tests
 library(gridExtra)    # Multiple plots
-```
 
-# Load Data
 
-```{r load-data}
-# Read the dataset
+# Load Data and take a look at the dataset
 data <- read_delim("data00_AngristKugler.tab", delim = "\t")
-
-# Display structure
 glimpse(data)
 ```
 
@@ -57,10 +45,10 @@ glimpse(data)
 **Tasks:**
 
 1. Subset data to years 1991, 1992, 1993 and 1996, 1997, 1998
-2. Create `grow` variable (1 if dep_ocu in {13, 18, 19, 50, 52, 86, 95, 97, 99}, 0 otherwise)
-3. Create `after` variable (1 if year ∈ {1996, 1997, 1998}, 0 otherwise)
-4. Create `growafter` variable (grow × after)
-5. Create outcome variable: $\log\left(\frac{populati+1}{violent+1}\right)$
+2. Create `grow` variable (1 if `dep_ocu` $\in \{13, 18, 19, 50, 52, 86, 95, 97, 99\}$, 0 otherwise)
+3. Create `after` variable (1 if year $\in \{1996, 1997, 1998\}$, 0 otherwise)
+4. Create `growafter` variable (`grow` $\times$ `after`)
+5. Create outcome variable: $\log\left(\frac{\text{populati}+1}{\text{violent}+1}\right)$
 
 ```{r q1-data-setup}
 # Subset to relevant years
@@ -89,7 +77,7 @@ glimpse(data)
 **Tasks:**
 
 1. Create density plots for non-growing vs. growing regions, before vs. after
-2. Extend to 2×2 grid by gender (men: sex=1, women: sex=2)
+2. Extend to $2 \times 2$ grid by gender (men: `sex=1`, women: `sex=2`)
 3. Interpret: Evidence of shifts in violence? Different by gender?
 
 ```{r q2-density-plots-simple}
@@ -131,8 +119,8 @@ glimpse(data)
 **Tasks:**
 
 1. Use pre-treatment years (1990-1993)
-2. Estimate: outcome = $\alpha + \beta ·year + \gamma·grow + \delta·(grow × year) + u$
-3. Test if grow×year interactions are jointly zero (year as linear and categorical)
+2. Estimate: outcome $= \alpha + \beta \cdot \text{year} + \gamma \cdot \text{grow} + \delta \cdot (\text{grow} \times \text{year}) + u$
+3. Test if `grow` $\times$ `year` interactions are jointly zero (year as linear and categorical)
 4. Create graph of average outcome by year and group
 
 ```{r q4-prepare-data}
@@ -170,9 +158,9 @@ glimpse(data)
 
 **Tasks:**
 
-1. Create placebo_after (1 if year=1992 or 1993, 0 if year=1990 or 1991)
+1. Create `placebo_after` (1 if year $= 1992$ or $1993$, 0 if year $= 1990$ or $1991$)
 2. Estimate placebo DiD model
-3. Interpret placebo_after × grow coefficient
+3. Interpret `placebo_after` $\times$ `grow` coefficient
 
 ```{r q5-placebo-data}
 # Subset and create placebo variables
@@ -192,7 +180,7 @@ glimpse(data)
 
 # Q6. Covariate Balance at Time 0
 
-**Task:** Compare treatment and control regions on age, sex, and populati using pre-treatment data.
+**Task:** Compare treatment and control regions on `age`, `sex`, and `populati` using pre-treatment data.
 
 ```{r q6-balance-table}
 # Create balance table
@@ -259,9 +247,9 @@ glimpse(data)
 
 **Tasks:**
 
-1. Estimate: outcome = β₀ + β₁·after + β₂·grow + β₃·(after×grow) + u
-2. Report β₃ and p-value
-3. Show analytically that β₃ equals the manual DiD estimate
+1. Estimate: outcome $= \beta_0 + \beta_1 \cdot \text{after} + \beta_2 \cdot \text{grow} + \beta_3 \cdot (\text{after} \times \text{grow}) + u$
+2. Report $\beta_3$ and p-value
+3. Show analytically that $\beta_3$ equals the manual DiD estimate
 
 ```{r q10-did-regression}
 # DiD regression model
@@ -270,11 +258,11 @@ glimpse(data)
 
 **Interpretation:**
 
-[What does β₃ tell us about the causal effect?]
+[What does $\beta_3$ tell us about the causal effect?]
 
 **Analytical proof:**
 
-[Show that $\beta_3 = (\bar{Y}_{1,1} - \bar{Y}_{1,0}) - (\bar{Y}_{0,1} - \bar{Y}_{0,0})$
+[Show that $\beta_3 = (\bar{Y}_{1,1} - \bar{Y}_{1,0}) - (\bar{Y}_{0,1} - \bar{Y}_{0,0})$]
 
 ---
 
