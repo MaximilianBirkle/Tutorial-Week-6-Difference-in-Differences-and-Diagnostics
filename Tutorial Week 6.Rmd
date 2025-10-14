@@ -23,14 +23,14 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, 
                       fig.width = 10, fig.height = 6)
 # Setup 
-library(tidyverse)    # Data manipulation and visualization
-library(haven)        # Reading data files
-library(knitr)        # Tables
-library(kableExtra)   # Enhanced tables
-library(broom)        # Tidy regression output
-library(lmtest)       # Hypothesis testing
-library(car)          # Linear hypothesis tests
-library(gridExtra)    # Multiple plots
+library(tidyverse)
+library(haven)    
+library(knitr)    
+library(kableExtra)
+library(broom)     
+library(lmtest)    
+library(car)       
+library(gridExtra) 
 
 
 # Load Data and take a look at the dataset
@@ -305,11 +305,3 @@ glimpse(data)
 3. What are the remaining identification threats?
 
 [Your final interpretation here]
-
----
-
-# Session Info
-
-```{r session-info}
-sessionInfo()
-```
