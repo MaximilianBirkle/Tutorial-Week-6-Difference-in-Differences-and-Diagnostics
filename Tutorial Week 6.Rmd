@@ -44,17 +44,7 @@ glimpse(data)
 
 **Tasks:**
 
-1. Subset data to years 1991, 1992, 1993 and 1996, 1997, 1998
-
-```{r}
-
-# Subsetting the dataset to years 1991 - 1993 and 1996 - 1998
-data_subset <- data %>% 
-  filter(year %in% c(1991, 1992, 1993, 1996, 1997, 1998))
-
-```
-
-2. Create `grow` variable (1 if `dep_ocu` $\in \{13, 18, 19, 50, 52, 86, 95, 97, 99\}$, 0 otherwise)
+1. Create `grow` variable (1 if `dep_ocu` $\in \{13, 18, 19, 50, 52, 86, 95, 97, 99\}$, 0 otherwise)
 
 ```{r}
 
@@ -65,8 +55,31 @@ data <- data %>%
   mutate(grow = ifelse(dep_ocu %in% department_list, 1, 0))
 ```
 
+2. Subset data to years 1991, 1992, 1993 and 1996, 1997, 1998
+
+```{r}
+
+# Subsetting the dataset to years 1991 - 1993 and 1996 - 1998
+data_subset <- data %>% 
+  filter(year %in% c(1991, 1992, 1993, 1996, 1997, 1998))
+
+```
+
 3. Create `after` variable (1 if year $\in \{1996, 1997, 1998\}$, 0 otherwise)
+
+```{r}
+
+# We create a variable called after with 1 for years 1996 - 1998
+data_subset <- data_subset %>% 
+  mutate(after = ifelse(year %in% c(1996, 1997, 1998), 1, 0))
+```
+
 4. Create `growafter` variable (`grow` $\times$ `after`)
+
+```{r}
+
+```
+
 5. Create outcome variable: $\log\left(\frac{\text{populati}+1}{\text{violent}+1}\right)$
 
 ```{r q1-data-setup}
