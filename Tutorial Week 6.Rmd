@@ -3,8 +3,8 @@ title: "Rural Windfall or a New Resource Curse? Coca, Income, and Civil Conflict
 subtitle: "Based on Angrist & Kugler (2008)"
 author:
   - Maximilian Birkle
-  - [Author 2 Name]
-  - [Author 3 Name]
+  - Daniel Lehmann
+  - Henry Lucas
 date: "`r Sys.Date()`"
 output:
   pdf_document:
@@ -45,6 +45,16 @@ glimpse(data)
 **Tasks:**
 
 1. Subset data to years 1991, 1992, 1993 and 1996, 1997, 1998
+
+```{r}
+
+# Subsetting the dataset to years 1991 - 1993 and 1996 - 1998
+data_subset <- data %>% 
+  filter(year %in% c(1991, 1992, 1993, 1996, 1997, 1998))
+
+```
+
+
 2. Create `grow` variable (1 if `dep_ocu` $\in \{13, 18, 19, 50, 52, 86, 95, 97, 99\}$, 0 otherwise)
 3. Create `after` variable (1 if year $\in \{1996, 1997, 1998\}$, 0 otherwise)
 4. Create `growafter` variable (`grow` $\times$ `after`)
