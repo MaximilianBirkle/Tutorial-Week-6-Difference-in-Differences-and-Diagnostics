@@ -78,6 +78,9 @@ data_subset <- data_subset %>%
 
 ```{r}
 
+# Creating growafter variable (grow * after)
+data_subset <- data_subset %>% 
+  mutate(growafter = grow * after)
 ```
 
 5. Create outcome variable: $\log\left(\frac{\text{populati}+1}{\text{violent}+1}\right)$
