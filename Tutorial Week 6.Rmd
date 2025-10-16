@@ -54,8 +54,17 @@ data_subset <- data %>%
 
 ```
 
-
 2. Create `grow` variable (1 if `dep_ocu` $\in \{13, 18, 19, 50, 52, 86, 95, 97, 99\}$, 0 otherwise)
+
+```{r}
+
+# Creating a new variable grow
+department_list <- c(13, 18, 19, 50, 52, 86, 95, 97, 99)
+
+data <- data %>% 
+  mutate(grow = ifelse(dep_ocu %in% department_list, 1, 0))
+```
+
 3. Create `after` variable (1 if year $\in \{1996, 1997, 1998\}$, 0 otherwise)
 4. Create `growafter` variable (`grow` $\times$ `after`)
 5. Create outcome variable: $\log\left(\frac{\text{populati}+1}{\text{violent}+1}\right)$
