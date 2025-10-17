@@ -85,6 +85,15 @@ data_subset <- data_subset %>%
 
 5. Create outcome variable: $\log\left(\frac{\text{populati}+1}{\text{violent}+1}\right)$
 
+```{r}
+
+# Create outcome variable
+
+data_subset <- data_subset %>% 
+  mutate(outcome = log((populati + 1) / (violent + 1)))
+```
+
+
 ```{r q1-data-setup}
 # Subset to relevant years
 
@@ -117,6 +126,13 @@ data_subset <- data_subset %>%
 
 ```{r q2-density-plots-simple}
 # Density plots: Non-growing vs. Growing regions
+
+density_plot <- data_subset %>% 
+  mutate(
+    period = factor(after, levels = c(0, 1), labels = c("Before (1991-93)", "After (1996-98)")),
+    region_type = factor(grow, levels = c(0, 1), labels = c("Non-Growing Region", "Growing Region")),
+    gender = factor(sex, levels = c(1, 2), labels = c("Men", "Women"))
+  )
 
 ```
 
