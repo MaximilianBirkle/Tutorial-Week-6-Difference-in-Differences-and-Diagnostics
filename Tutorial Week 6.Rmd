@@ -46,7 +46,7 @@ glimpse(data)
 
 1. Create `grow` variable (1 if `dep_ocu` $\in \{13, 18, 19, 50, 52, 86, 95, 97, 99\}$, 0 otherwise)
 
-```{r}
+```{r q1-data-setup}
 
 # Creating a new variable grow
 department_list <- c(13, 18, 19, 50, 52, 86, 95, 97, 99)
@@ -81,38 +81,30 @@ data_subset <- data_subset %>%
 # Creating growafter variable (grow * after)
 data_subset <- data_subset %>% 
   mutate(growafter = grow * after)
+
+# Confirm that both are coded correctly
+data_subset %>% 
+  filter(grow == 1) %>% 
+  distinct(dep_ocu) %>% 
+  arrange(dep_ocu)
+
+
+data_subset %>% 
+  count(grow, after, growafter)
+
+# First Table: Grow takes the value of 1 only for defined departments.
+# Second Table: 'growafter' only takes the value of 1 if grow and after are 1.
 ```
 
 5. Create outcome variable: $\log\left(\frac{\text{populati}+1}{\text{violent}+1}\right)$
 
 ```{r}
 
-# Create outcome variable
-
+# Create outcome variable (it makes more sense if it is death over population) 
 data_subset <- data_subset %>% 
-  mutate(outcome = log((populati + 1) / (violent + 1)))
+  mutate(outcome = log((violent + 1) / (populati + 1)))
 ```
 
-
-```{r q1-data-setup}
-# Subset to relevant years
-
-
-# Create grow variable
-
-
-# Create after variable
-
-
-# Create growafter interaction
-
-
-# Create outcome variable
-
-
-# Confirm variable creation
-
-```
 
 ---
 
@@ -125,8 +117,7 @@ data_subset <- data_subset %>%
 3. Interpret: Evidence of shifts in violence? Different by gender?
 
 ```{r q2-density-plots-simple}
-# Density plots: Non-growing vs. Growing regions
-
+# Setup
 density_plot <- data_subset %>% 
   mutate(
     period = factor(after, levels = c(0, 1), labels = c("Before (1991-93)", "After (1996-98)")),
@@ -134,11 +125,30 @@ density_plot <- data_subset %>%
     gender = factor(sex, levels = c(1, 2), labels = c("Men", "Women"))
   )
 
+
+# Density plots: Non-growing vs. Growing regions
+density_plot %>%
+  ggplot(aes(x = outcome, fill = period, color = period)) +
+  geom_density(alpha = 0.5) +
+  facet_wrap(~ region_type) +
+  labs(title = "Logged per-capita violent death rate distribution: Before vs After by Region Type",
+       x = "Number of Violent Deaths",
+       y = "Density") +
+  theme_minimal()
+
 ```
 
 ```{r q2-density-plots-gender}
 # 2x2 grid: Top=men, Bottom=women; Left=non-growing, Right=growing
-
+density_plot %>%
+  filter(!is.na(gender)) %>%
+  ggplot(aes(x = outcome, fill = period, color = period)) +
+  geom_density(alpha = 0.5) +
+  facet_grid(gender ~ region_type) +
+  labs(title = "Logged per-capita violent death rate distribution by Gender and Region Type",
+       x = "Number of Violent Deaths",
+       y = "Density") +
+  theme_minimal()
 ```
 
 **Interpretation:**
