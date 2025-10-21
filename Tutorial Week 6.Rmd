@@ -153,7 +153,7 @@ density_plot %>%
 
 **Interpretation:**
 
-[Your interpretation here]
+Mache ich noch (Max)
 
 ---
 
@@ -163,15 +163,28 @@ density_plot %>%
 
 ```{r q3-age-effects}
 # Calculate mean difference by age for growing regions only
-
+age_effects <- data_subset %>%
+  filter(grow == 1) %>%
+  group_by(age, after) %>%
+  summarise(mean_outcome = mean(outcome, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = after, values_from = mean_outcome, names_prefix = "period_") %>%
+  mutate(change = period_1 - period_0)
 
 # Plot age-specific effects
-
+age_effects %>%
+  ggplot(aes(x = age, y = change)) +
+  geom_line(color = "blue", size = 1) +
+  geom_point(color = "blue", size = 2) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "Change in Logged per-capita Violent Death Rate by Age (Coca-Growing Regions)",
+       x = "Age",
+       y = "Change in Outcome (After - Before)") +
+  theme_minimal()
 ```
 
 **Interpretation:**
 
-[Does the effect vary by age?]
+Mache ich noch (Max)
 
 ---
 
@@ -186,7 +199,10 @@ density_plot %>%
 
 ```{r q4-prepare-data}
 # Subset to pre-treatment years (1990-1993)
-
+data_pretreatment <- data %>%
+  filter(year %in% c(1990, 1991, 1992, 1993)) %>%
+  mutate(grow = ifelse(dep_ocu %in% department_list, 1, 0),
+         outcome = log((violent + 1) / (populati + 1)))
 ```
 
 ```{r q4-parallel-trends-linear}
