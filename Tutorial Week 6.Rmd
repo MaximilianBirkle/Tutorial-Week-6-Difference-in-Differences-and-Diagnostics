@@ -23,19 +23,34 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, 
                       fig.width = 10, fig.height = 6)
 # Setup 
-library(tidyverse)
-library(haven)    
-library(knitr)    
-library(kableExtra)
-library(broom)     
-library(lmtest)    
-library(car)       
-library(gridExtra) 
+if (!require(haven)) install.packages("haven")
+library (haven)
+if (!require(dplyr)) install.packages("dplyr")
+library(dplyr)
+if (!require(foreign)) install.packages("foreign")
+library(foreign)
+if (!require(plm)) install.packages("plm")
+library(plm)
+if (!require(stargazer)) install.packages("stargazer")
+library(stargazer)
+if (!require(ggplot2)) install.packages("ggplot2")
+library (ggplot2)
+if (!require(sandwich)) install.packages("sandwich")
+library (sandwich)
+if (!require(lmtest)) install.packages("lmtest")
+library (lmtest)
+if (!require(tidyverse)) install.packages("tidyverse")
+library (tidyverse)
+if (!require(BART)) install.packages("BART")
+library (BART)
+if (!require(grf)) install.packages("grf")
+library (grf)
+if (!require(car)) install.packages("car")
+library (car)
 
 
 # Load Data and take a look at the dataset
-data <- read_delim("data00_AngristKugler.tab", delim = "\t")
-glimpse(data)
+dta <- read_delim("data00_AngristKugler.tab", delim = "\t")
 ```
 
 ---
@@ -51,7 +66,7 @@ glimpse(data)
 # Creating a new variable grow
 department_list <- c(13, 18, 19, 50, 52, 86, 95, 97, 99)
 
-data <- data %>% 
+dta <- dta %>% 
   mutate(grow = ifelse(dep_ocu %in% department_list, 1, 0))
 ```
 
@@ -60,7 +75,7 @@ data <- data %>%
 ```{r}
 
 # Subsetting the dataset to years 1991 - 1993 and 1996 - 1998
-data_subset <- data %>% 
+dta_subset <- dta %>% 
   filter(year %in% c(1991, 1992, 1993, 1996, 1997, 1998))
 
 ```
@@ -70,7 +85,7 @@ data_subset <- data %>%
 ```{r}
 
 # We create a variable called after with 1 for years 1996 - 1998
-data_subset <- data_subset %>% 
+dta_subset <- dta_subset %>% 
   mutate(after = ifelse(year %in% c(1996, 1997, 1998), 1, 0))
 ```
 
@@ -79,7 +94,7 @@ data_subset <- data_subset %>%
 ```{r}
 
 # Creating growafter variable (grow * after)
-data_subset <- data_subset %>% 
+dta_subset <- dta_subset %>% 
   mutate(growafter = grow * after)
 ```
 
@@ -89,29 +104,8 @@ data_subset <- data_subset %>%
 
 # Create outcome variable
 
-data_subset <- data_subset %>% 
-  mutate(outcome = log((populati + 1) / (violent + 1)))
-```
-
-
-```{r q1-data-setup}
-# Subset to relevant years
-
-
-# Create grow variable
-
-
-# Create after variable
-
-
-# Create growafter interaction
-
-
-# Create outcome variable
-
-
-# Confirm variable creation
-
+dta_subset <- dta_subset %>% 
+  mutate(outcome = log((violent + 1) / (populati + 1)))
 ```
 
 ---
@@ -127,17 +121,36 @@ data_subset <- data_subset %>%
 ```{r q2-density-plots-simple}
 # Density plots: Non-growing vs. Growing regions
 
-density_plot <- data_subset %>% 
+density_plot <- dta_subset %>% 
   mutate(
     period = factor(after, levels = c(0, 1), labels = c("Before (1991-93)", "After (1996-98)")),
     region_type = factor(grow, levels = c(0, 1), labels = c("Non-Growing Region", "Growing Region")),
     gender = factor(sex, levels = c(1, 2), labels = c("Men", "Women"))
   )
 
+
+density_plot %>%
+  ggplot(aes(x = outcome, fill = period, color = period)) +
+  geom_density(alpha = 0.5) +
+  facet_wrap(~ region_type) +
+  labs(title = "Logged per-capita violent death rate distribution: Before vs After by Region Type",
+       x = "Number of Violent Deaths",
+       y = "Density") +
+  theme_bw()
 ```
 
 ```{r q2-density-plots-gender}
 # 2x2 grid: Top=men, Bottom=women; Left=non-growing, Right=growing
+
+density_plot %>%
+  filter(!is.na(gender)) %>%
+  ggplot(aes(x = outcome, fill = period, color = period)) +
+  geom_density(alpha = 0.5) +
+  facet_grid(gender ~ region_type) +
+  labs(title = "Logged per-capita violent death rate distribution by Gender and Region Type",
+       x = "Number of Violent Deaths",
+       y = "Density") +
+  theme_bw()
 
 ```
 
@@ -153,9 +166,23 @@ density_plot <- data_subset %>%
 
 ```{r q3-age-effects}
 # Calculate mean difference by age for growing regions only
-
+age_effects <- dta_subset %>%
+  filter(grow == 1) %>%
+  group_by(age, after) %>%
+  summarise(mean_outcome = mean(outcome, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = after, values_from = mean_outcome, names_prefix = "period_") %>%
+  mutate(change = period_1 - period_0)
 
 # Plot age-specific effects
+age_effects %>%
+  ggplot(aes(x = age, y = change)) +
+  geom_line(color = "blue", size = 1) +
+  geom_point(color = "blue", size = 2) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "Change in Logged per-capita Violent Death Rate by Age (Coca-Growing Regions)",
+       x = "Age",
+       y = "Change in Outcome (After - Before)") +
+  theme_bw()
 
 ```
 
@@ -176,27 +203,47 @@ density_plot <- data_subset %>%
 
 ```{r q4-prepare-data}
 # Subset to pre-treatment years (1990-1993)
-
+dta_pretreatment <- dta %>%
+  filter(year %in% c(1990, 1991, 1992, 1993)) %>%
+  mutate(grow = ifelse(dep_ocu %in% department_list, 1, 0),
+         outcome = log((violent + 1) / (populati + 1)))
 ```
 
 ```{r q4-parallel-trends-linear}
 # Model with year as linear
+year_linear <- lm(outcome ~ year + grow + year:grow, data = dta_pretreatment)
 
+summary(year_linear)
 ```
 
 ```{r q4-parallel-trends-categorical}
 # Model with year as categorical (factor)
+year_factor <- lm(outcome ~ factor(year) + grow + factor(year):grow, data = dta_pretreatment)
 
+summary(year_linear)
 ```
 
 ```{r q4-joint-test}
 # Test if grow×year interactions are jointly zero
-
+linearHypothesis(year_factor, matchCoefs(year_factor, ":grow"))
 ```
 
 ```{r q4-visual-trends}
 # Graph: Average outcome by year and group
-
+dta_pretreatment %>%
+  group_by(year, grow) %>%
+  summarise(mean_outcome = mean(outcome, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(x = year, y = mean_outcome, color = factor(grow))) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  labs(
+    title = "Pre-treatment Trends in Violence by Region Type",
+    subtitle = "Checking Parallel Trends (1990–1993)",
+    x = "Year",
+    y = "Mean Logged per-capita Violent Death Rate",
+    color = "Coca-growing Region"
+  ) +
+  theme_bw()
 ```
 
 **Interpretation:**
@@ -215,12 +262,19 @@ density_plot <- data_subset %>%
 
 ```{r q5-placebo-data}
 # Subset and create placebo variables
-
+dta_placebo <- dta %>%
+  filter(year %in% c(1990, 1991, 1992, 1993)) %>%
+  mutate(
+    grow = ifelse(dep_ocu %in% department_list, 1, 0),
+    outcome = log((violent + 1) / (populati + 1)),
+    placebo_after = ifelse(year %in% c(1992, 1993), 1, 0)
+  )
 ```
 
 ```{r q5-placebo-regression}
 # Estimate placebo DiD model
-
+placebo_did <- lm(outcome ~ placebo_after + grow + placebo_after:grow, data = dta_placebo)
+summary(placebo_did)
 ```
 
 **Interpretation:**
@@ -235,7 +289,19 @@ density_plot <- data_subset %>%
 
 ```{r q6-balance-table}
 # Create balance table
+dta_balance <- dta_subset %>%
+  filter(after == 0)
 
+balance_table <- dta_balance %>%
+  group_by(grow) %>%
+  summarise(
+    mean_age = mean(age, na.rm = TRUE),
+    mean_sex = mean(sex, na.rm = TRUE),
+    mean_pop = mean(populati, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+balance_table
 ```
 
 ```{r q6-balance-plot}
@@ -278,13 +344,16 @@ density_plot <- data_subset %>%
 **Task:** Compute manual DiD estimate.
 
 ```{r q9-manual-did}
-# Mean difference (after - before) for grow=1
-
-
-# Mean difference (after - before) for grow=0
-
+# Mean difference (after - before) for grow=1 and grow=0
+did_table <- dta_subset %>%
+  group_by(grow, after) %>%
+  summarise(mean_outcome = mean(outcome, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = after, values_from = mean_outcome, names_prefix = "time") %>%
+  mutate(diff = time1 - time0)
 
 # DiD estimate: subtract the two
+did_estimate <- diff(did_table$diff)
+did_estimate
 
 ```
 
@@ -304,7 +373,8 @@ density_plot <- data_subset %>%
 
 ```{r q10-did-regression}
 # DiD regression model
-
+did <- lm(outcome ~ after + grow + after:grow, data = dta_subset)
+summary(did)
 ```
 
 **Interpretation:**
@@ -323,22 +393,31 @@ density_plot <- data_subset %>%
 
 ```{r q11-model1}
 # Model 1: outcome ~ grow + after + growafter
-
+cov_did1 <- lm(outcome ~ after + grow + after:grow, data = dta_subset)
 ```
 
 ```{r q11-model2}
 # Model 2: Add age and sex
-
+cov_did2 <- lm(outcome ~ after + grow + after:grow + age + sex, data = dta_subset)
 ```
 
 ```{r q11-model3}
 # Model 3: Add age, sex, and populati
-
+cov_did3 <- lm(outcome ~ after + grow + after:grow + age + sex + populati, data = dta_subset)
 ```
 
 ```{r q11-comparison}
 # Compare models
-
+stargazer(cov_did1, cov_did2, cov_did3,      # List your models
+          type = "text",                   # Output type: "text", "html", or "latex"
+          title = "Regression Results: The Effect of Treatment on Outcome",
+          align = TRUE,                    # Aligns numbers on decimal points
+          dep.var.labels = "Outcome",      # A clean name for the dependent variable
+          column.labels = c("Base Model", "Adds Demographics", "Full Model"),
+          covariate.labels = c("After Treatment", "Treatment Group (Grow)", "Age",
+                               "Sex", "Population", "Interaction: After x Grow"),
+          notes = "Standard errors are in parentheses.",
+          notes.align = "l")
 ```
 
 **Discussion:**
