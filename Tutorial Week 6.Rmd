@@ -376,10 +376,13 @@ In our results , we can see that age is almost perfectly balanced (15.5 vs 15.6)
 **Discussion Questions:**
 
 1. Should we include covariates from time 0, time 1, or both?
-2. What happens if you include a covariate measured after treatment?
-3. When might adjusting for post-treatment variables be appropriate?
+* For the sake of our difference-in-difference model, we should include the covariates measured at Time 0, as well as the time-invariant covariates that do not change over time (e.g. **sex**). The purpose of adding covariates in this context is to control for confounding factors. As we discovered in Question 6, the treatment (**grow** = 1) and control (**grow** = 0) groups were not identical at the outset, with the growing regions having much lower populations. This creates an issue, as we cannot determine whether the DiD effect is due to the coca boom or if rural regions with low populations simply have different violence trends naturally. By adding covariates such as **populati** from the baseline period (Time 0) to our regression model, we can statistically adjust for this pre-existing difference. The model essentially allows us to compare the groups as if they had started with the same population levels.
 
-[Your answers here]
+2. What happens if you include a covariate measured after treatment?
+* Adding a covariate that is measured after the treatment could lead to severe problems. In this case, for example, the treatment (i.e. the coca boom) might have caused a change in the covariate, which in turn caused a change in the outcome (violence). Let us break this example down: First, we observe the coca boom happening. This boom might cause people to move to the region to find work, resulting in a change in the population at Time 1. This change in population could then lead to more violence. Therefore, this change in population is one of the mechanisms through which the coca boom affects violence, and is therefore part of the overall causal effect. However, by controlling for population in our model at Time 1, we block one of the main ways in which the treatment works, as we have instructed the model to disregard the fact that a significant aspect of the coca boom's impact was its effect on population change. This could lead to a serious underestimation of our causal effect. 
+
+3. When might adjusting for post-treatment variables be appropriate?
+* If we are solely goal is to find the total causal effect of the treatment, it is almost never appropriate to adjust for such variables. One exception is if we are conducting a mediation analysis and deliberately change our research question from 'What is the total effect of the coca boom on violence?' to 'How much of the coca boom's effect on violence is explained by changes in region's population?'. In this specific case, we would run a regression with and without the post-treatment **populati** variable and compare the $\beta_3$ coefficients. The degree to which the coefficient shrinks after adding the population variable would be our estimate of the mediated effect. But since we are interested in the total causal effect, we must avoid using post-treatment variables as controls. 
 
 ---
 
