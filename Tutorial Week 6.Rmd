@@ -324,7 +324,7 @@ summary(placebo_did)
 
 **Interpretation:**
 
-[Should the placebo effect be significant? What would significance suggest?]
+In general, the placebo test helps us to check the parallel trends assumption, stating that the outcome (violence) in the treatment group (coca-growing regions) and the control group (non-growing regions) would have developed the same way, had the treatment (air bridge disruption) not been applied. For that reason, we take only the data from the "before" period (1990-1993), when the real treatment (starting 1996) has not happened yet. Moreover, we invent a fake intervention that supposedly happened in the middle of this period and split the data in two halves. We run the same DiD regression using this subset of the data. As there is no treatment, at least that we know of, applied during that time, the interaction coefficient **placebo_after:grow** should not be significant. In other words, we do not want to reject the null hypothesis for this placebo test, as it assumes that in the pre-treatment period, there was no difference in the trend of violence between the coca-growing region and the non-growing regions. This serves as a form of "sanity check", to test the credibility of our main DiD analysis, specifically the underlying parallel trends assumption. A significant coefficient would, of course, suggest the opposite. Our results show this coefficient is -0.0031 and indeed not significant with a p-value of 0.977. This confirms our assumption that the two groups were trending parallel, giving us confidence that the significant effect we find later is due to the impact of treatment and not the product of some pre-existing trend.
 
 ---
 
