@@ -193,7 +193,46 @@ age_effects %>%
 
 **Interpretation:**
 
-This plot illustrates how the average violence rate changes for each age group by calculating the difference between the average violence rate for an age group after the air-bridge disruption and the average violence rate for that same group before the disruption. Clearly, the plot shows that the effect varies dramatically across different age groups, with a heavy concentration in certain age brackets. The increase in conflict and violence seems to have disproportionately affected individuals of fighting age, as can be seen from the peaks in the graph between the ages of 17 and 22. Additionally, younger adolescents around the age of 10 seem to have been particularly involved in violent activities, resulting in a much higher death rate after the air disruption. However, it is important to note that, for a few age groups — especially those around 15 years old — the rate of violence decreased after the air disruption.
+This plot illustrates how the average violence rate changes for each age group by calculating the difference between the average violence rate for an age group after the air-bridge disruption and the average violence rate for that same group before the disruption. Clearly, the plot shows that the effect varies dramatically across different age groups, with a concentration in certain age brackets. The increase in conflict and violence seems to have disproportionately affected individuals of fighting age, as can be seen from the peaks in the graph between the ages of 17 and 22. Additionally, younger adolescents around the age of 10 seem to have been particularly involved in violent activities, resulting in a much higher death rate after the air disruption. However, it is important to note that, for a few age groups — especially those around 15 years old — the rate of violence decreased after the air disruption. 
+
+This seemingly volatile distribution across age groups reveals a key insight. If the increase in violence was solely due to increased criminal activity, we would most likely see it concentrated among cohorts that met the age of fighting and above. However, since we cearly see that also much younger age groups show an increase in violent deaths, we can conclude that this is mostly caused by conflict-related violence (e.g. civil war) after the 'air bridge' intervention, which corresponds to the paper's findings. 
+
+To explore this interesting trend, we created a graph for the per-capita violent death rate in coca-growing regions before and after for men only. What we can see here is that the increase in violence was not confined by the typical "fighting age" bracket but was high across the entire youg male distribution, including children around 10. This pattern strongly suggests widespread, conflict-related violence. The coca boom fueled this by creating two distinct sets of victims: older cohorts were recruited as soldiers, while younger boys, drawn in as laborers, became collateral damage in the armed groups' fight to control the coca fields and labor force .
+
+```{r q3-men-age-effects}
+
+age_effects_men <- dta_subset %>%
+  filter(grow == 1, sex == 1) %>% # <- HIER IST DIE ÄNDERUNG
+  group_by(age, after) %>%
+  summarise(
+    mean_outcome = mean(outcome, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  pivot_wider(
+    names_from = after,
+    values_from = mean_outcome,
+    names_prefix = "period_"
+  ) %>%
+  mutate(change = period_1 - period_0)
+
+# Plot der altersspezifischen Effekte für Männer
+age_effects_men %>%
+  ggplot(aes(x = age, y = change)) +
+  geom_line(color = "blue", size = 1) +
+  geom_point(color = "blue", size = 2) +
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed",
+    color = "red"
+  ) +
+  labs(
+    title = "Change in Logged per-capita Violent Death Rate by Age (Men in Coca-Growing Regions)", # <- Titel angepasst
+    x = "Age",
+    y = "Change in Outcome (After - Before)"
+  ) +
+  theme_bw()
+```
+
 
 ---
 
