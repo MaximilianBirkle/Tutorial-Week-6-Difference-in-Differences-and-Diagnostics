@@ -405,8 +405,8 @@ did_estimate
 ```
 
 **Interpretation:**
-
-[Why is DiD preferable to simple before-after comparison?]
+The problem with a simple before-and-after comparison is that it is based on the flawed assumption that the only thing that changed for coca-growing regions between the 'before' and 'after' periods was the disruption to the air bridge. However, it is almost certain that other trends were at play during that time that could have caused changes in violence rates across the entire country, which were completely unrelated to the coca boom. A simple before-and-after comparison in the growing regions would be unable to distinguish between the effects of the coca boom and those of other confounding trends occurring simultaneously. 
+By contrast, the difference-in-difference estimate is superior because it uses non-growing regions (**grow** = 0) as a counterfactual to address this issue. The logic is that the difference between the 'after' and 'before' periods in the non-growing regions acts as a benchmark. This essentially captures the change in violence due to all those other factors. However, the difference in the growing regions captures the same 'background trend' plus the true causal effect of the coca boom. By subtracting the control group's change from the treatment group's change, we can effectively control for the background trend. This isolates the true causal effect.
 
 ---
 
