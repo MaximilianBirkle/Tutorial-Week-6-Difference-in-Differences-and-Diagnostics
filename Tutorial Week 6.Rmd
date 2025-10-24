@@ -97,39 +97,20 @@ dta_subset <- dta_subset %>%
 dta_subset <- dta_subset %>% 
   mutate(growafter = grow * after)
 
-# Confirm that both are coded correctly
-data_subset %>% 
-  filter(grow == 1) %>% 
-  distinct(dep_ocu) %>% 
-  arrange(dep_ocu)
-
-
-data_subset %>% 
+dta_subset %>% 
   count(grow, after, growafter)
-
-# First Table: Grow takes the value of 1 only for defined departments.
-# Second Table: 'growafter' only takes the value of 1 if grow and after are 1.
 ```
 
 5. Create outcome variable: $\log\left(\frac{\text{populati}+1}{\text{violent}+1}\right)$
 
 ```{r}
 
-<<<<<<< HEAD
 # Create outcome variable
 
 dta_subset <- dta_subset %>% 
   mutate(outcome = log((violent + 1) / (populati + 1)))
 ```
 
-=======
-# Create outcome variable (it makes more sense if it is death over population) 
-data_subset <- data_subset %>% 
-  mutate(outcome = log((violent + 1) / (populati + 1)))
-```
-
-
->>>>>>> 281b905b1c9def3a2ff855b5273cb6b19963c868
 ---
 
 # Q2. Visualizing Violence Before and After
@@ -141,14 +122,10 @@ data_subset <- data_subset %>%
 3. Interpret: Evidence of shifts in violence? Different by gender?
 
 ```{r q2-density-plots-simple}
-<<<<<<< HEAD
+
 # Density plots: Non-growing vs. Growing regions
 
 density_plot <- dta_subset %>% 
-=======
-# Setup
-density_plot <- data_subset %>% 
->>>>>>> 281b905b1c9def3a2ff855b5273cb6b19963c868
   mutate(
     period = factor(after, levels = c(0, 1), labels = c("Before (1991-93)", "After (1996-98)")),
     region_type = factor(grow, levels = c(0, 1), labels = c("Non-Growing Region", "Growing Region")),
@@ -156,10 +133,6 @@ density_plot <- data_subset %>%
   )
 
 
-<<<<<<< HEAD
-=======
-# Density plots: Non-growing vs. Growing regions
->>>>>>> 281b905b1c9def3a2ff855b5273cb6b19963c868
 density_plot %>%
   ggplot(aes(x = outcome, fill = period, color = period)) +
   geom_density(alpha = 0.5) +
@@ -167,20 +140,13 @@ density_plot %>%
   labs(title = "Logged per-capita violent death rate distribution: Before vs After by Region Type",
        x = "Number of Violent Deaths",
        y = "Density") +
-<<<<<<< HEAD
   theme_bw()
-=======
-  theme_minimal()
 
->>>>>>> 281b905b1c9def3a2ff855b5273cb6b19963c868
 ```
 
 ```{r q2-density-plots-gender}
 # 2x2 grid: Top=men, Bottom=women; Left=non-growing, Right=growing
-<<<<<<< HEAD
 
-=======
->>>>>>> 281b905b1c9def3a2ff855b5273cb6b19963c868
 density_plot %>%
   filter(!is.na(gender)) %>%
   ggplot(aes(x = outcome, fill = period, color = period)) +
@@ -189,18 +155,12 @@ density_plot %>%
   labs(title = "Logged per-capita violent death rate distribution by Gender and Region Type",
        x = "Number of Violent Deaths",
        y = "Density") +
-<<<<<<< HEAD
   theme_bw()
-
-=======
-  theme_minimal()
->>>>>>> 281b905b1c9def3a2ff855b5273cb6b19963c868
 ```
 
 **Interpretation:**
 
-Mache ich noch (Max)
-
+The evidence indicates a significant shift in violence following the air-bridge disruption, with the effect being highly specific to both region and gender. For the treatment group (**coca-growing regions**), there was a slight increase in the per-capita violent death rate among men. In contrast, the control group (**non-growing regions**) showed no meaningful change for either gender, which suggests that the increase in violence was not due to a nationwide trend. Furthermore, the pattern seems to be strongly gendered; the effect on women in the treatment group was minimal compared to a much larger effect on men. This suggests that the impact of the coca boom on violence was almost exclusively concentrated among the male population, who seem to have been the primary participants in the conflict.
 ---
 
 # Q3. Age-Specific Effects
@@ -209,11 +169,8 @@ Mache ich noch (Max)
 
 ```{r q3-age-effects}
 # Calculate mean difference by age for growing regions only
-<<<<<<< HEAD
+
 age_effects <- dta_subset %>%
-=======
-age_effects <- data_subset %>%
->>>>>>> 281b905b1c9def3a2ff855b5273cb6b19963c868
   filter(grow == 1) %>%
   group_by(age, after) %>%
   summarise(mean_outcome = mean(outcome, na.rm = TRUE), .groups = "drop") %>%
@@ -229,12 +186,8 @@ age_effects %>%
   labs(title = "Change in Logged per-capita Violent Death Rate by Age (Coca-Growing Regions)",
        x = "Age",
        y = "Change in Outcome (After - Before)") +
-<<<<<<< HEAD
   theme_bw()
 
-=======
-  theme_minimal()
->>>>>>> 281b905b1c9def3a2ff855b5273cb6b19963c868
 ```
 
 **Interpretation:**
@@ -254,11 +207,7 @@ Mache ich noch (Max)
 
 ```{r q4-prepare-data}
 # Subset to pre-treatment years (1990-1993)
-<<<<<<< HEAD
 dta_pretreatment <- dta %>%
-=======
-data_pretreatment <- data %>%
->>>>>>> 281b905b1c9def3a2ff855b5273cb6b19963c868
   filter(year %in% c(1990, 1991, 1992, 1993)) %>%
   mutate(grow = ifelse(dep_ocu %in% department_list, 1, 0),
          outcome = log((violent + 1) / (populati + 1)))
@@ -275,7 +224,7 @@ summary(year_linear)
 # Model with year as categorical (factor)
 year_factor <- lm(outcome ~ factor(year) + grow + factor(year):grow, data = dta_pretreatment)
 
-summary(year_linear)
+summary(year_factor)
 ```
 
 ```{r q4-joint-test}
