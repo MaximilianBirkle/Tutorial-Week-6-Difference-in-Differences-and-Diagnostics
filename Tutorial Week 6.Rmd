@@ -349,14 +349,10 @@ balance_table <- dta_balance %>%
 balance_table
 ```
 
-```{r q6-balance-plot}
-# Optional: Standardized difference plot
+**Interpretation:**
 
-```
-
-**Discussion:**
-
-[Why is covariate balance critical? What would imbalance imply?]
+In the balance check, we check if the treatment and control groups looked similar before the treatment started, by grouping the pre-treatment data into treatment (growing regions) and control group (non-growing regions) and calculating the mean for the variables age, sex, and populati . This is critical for DiD validity because the entire method relies on the assumption that the control group serves as a valid counterfactual for the treatment group. If the groups already were different before the treatment, we couldn't be sure if a later change in violence was due to the treatment (the coca boom) or those pre-existing differences. This serves as a useful addition to the placebo test. While in the placebo test, we checked if trends in the outcome (violence) were already diverging before treatment , the balance check compares the average levels of group characteristics (like age or population) at the start, helping us to select a control group that is at least plausibly similar to the treatment group before the treatment. This is also the reason why the authors, unfortunately, do not compare the coca-growing regions in Colombia to Neckarstadt West, as the two groups would be widely imbalanced on various key characteristics.
+In our results , we can see that age is almost perfectly balanced (15.5 vs 15.6), and sex is mostly balanced (1.51 vs 1.59). Regarding populati, we see a large imbalance, where the treatment regions (40,541) are almost half as populated as the control regions (78,301). This strongly suggests that coca cultivation didn't just appear anywhere, but rather "selected into" areas that were already systematically more rural and less populated. Considering that large imbalance, we would have to worry about it, as we could not rule out the difference of being more rural as the real reason for a change in violence and not the treatment. However, looking at our previous tests, despite the imbalance, the trends in violence were parallel before the treatment . The authors try to address this issue, by making the groups more comparable. They drop the departments with the largest cities (like Bogota) from the control group in their main analysis. So by making groups slightly more comparable and having secured before that we have parallel trends before the treatment, we can still be confident in the analysis.
 
 ---
 
@@ -365,10 +361,13 @@ balance_table
 **Discussion Questions:**
 
 1. If covariates are balanced at time 0, what does this imply about confounding?
-2. What role do these variables play after assignment?
-3. If violence trends already differ before treatment, how might this bias DiD?
+*  If our covariates were perfectly balanced, it would imply that the selection into the treatment group was "as good as random". This would be the ideal case, as it would mean that there are no observed pre-existing differences (or confounders) that could offer an alternative explanation for our results. However, as we saw in our balance check , the groups are imbalanced on **populati**, which confirms that selection was not random and we must deal with these confounders.
 
-[Your answers here]
+2. What role do these variables play after assignment?
+* Since our Q6 check showed that the groups are imbalanced (especially on **populati**), we can't just ignore these differences. Their role is to be control variables in our main DiD regression. By adding **age**, **sex**, and **populati** to the model, we are statistically "leveling the playing field." The regression "partials out" (or removes) the effect of these confounding variables, which "cleans" our DiD estimate. This allows us to adjust for the fact that the groups weren't identical to begin with, making our final after:grow coefficient much more credible.
+
+3. If violence trends already differ before treatment, how might this bias DiD?
+* This is the most critical threat to our entire study. If the violence trends were already different (e.g., if violence in coca regions was already increasing faster than in non-growing regions before 1996), our DiD model would be biased. The model would falsely attribute that pre-existing difference in trends to the "air bridge" disruption. This would completely mix up the "fake" trend effect with the "real" treatment effect, making our final coefficient meaningless. This is precisely why the Q4 and Q5 tests were so vital : they proved this wasn't happening, so we can be confident our DiD is not biased in this way.
 
 ---
 
