@@ -252,7 +252,8 @@ dta_pretreatment %>%
 
 **Interpretation:**
 
-[What do the p-values tell us about parallel trends?]
+To assess the validity of the parallel trend assumption, we focused on the pre-treatment period from 1990 to 1993. Both regression models formally test this parallel trends assumption by examining if the pre-treatment trends in violence are statistically different between the coca-growing regions and non-growing regions. The first model simplifies our analysis by assuming that time follows a linear trend. The key coefficient here is the interaction term **year:grow**, which measures the difference in the slopes of trend lines for the two groups. The p-value for this term is 0.99, which indicates that there is no statistically significant difference between the slopes. 
+The second model offers a more flexible, year-by-year analysis by checking if the gap in violence between the two groups changed in any year from 1991 to 1993 compared to the baseline year of 1990, instead of assuming a straight line. The additional, joint F-test on these interactions yields a p-value of 1 which is why we fail to reject the null hypothesis $H_0$ that the pre-treatment trends are perfectly parallel. This result is crucial because it validates the use of non-growing regions as a credible counterfactual. It gives us confidence that any divergence between the groups after the disruption is due to the coca boom itself, rather than pre-existing differences in trends.
 
 ---
 
