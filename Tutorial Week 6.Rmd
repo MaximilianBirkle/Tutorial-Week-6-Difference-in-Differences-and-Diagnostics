@@ -19,7 +19,7 @@ output:
     html_preview: true
 ---
 
-```{r setup, include=TRUE, message=FALSE, warning=FALSE}
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, 
                       fig.width = 10, fig.height = 6)
 # Setup 
