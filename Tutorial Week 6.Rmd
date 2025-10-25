@@ -533,36 +533,31 @@ Now, we substitute the regression coefficients into this formula:
 &= \Big( \beta_1 + \beta_3 \Big) - \Big( \beta_1 \Big) \\
 &= \beta_3
 \end{align*}
-
-This proves that the coefficient on the interaction term, $\beta_3$, is mathematically identical to the Difference-in-Differences estimate $\delta$.
 ---
 
 # Q11. Adding Covariates
 
 **Task:** Estimate three models and compare.
 
-```{r q11-model1}
+```{r q11-all three models}
 # Model 1: outcome ~ grow + after + growafter
 cov_did1 <- lm(outcome ~ after + grow + after:grow, data = dta_subset)
-```
 
-```{r q11-model2}
 # Model 2: Add age and sex
 cov_did2 <- lm(outcome ~ after + grow + after:grow + age + sex, data = dta_subset)
-```
 
-```{r q11-model3}
 # Model 3: Add age, sex, and populati
 cov_did3 <- lm(outcome ~ after + grow + after:grow + age + sex + populati, data = dta_subset)
+
 ```
 
 ```{r q11-comparison}
 # Compare models
-stargazer(cov_did1, cov_did2, cov_did3,      # List your models
-          type = "text",                   # Output type: "text", "html", or "latex"
+stargazer(cov_did1, cov_did2, cov_did3,     
+          type = "latex",                 
           title = "Regression Results: The Effect of Treatment on Outcome",
-          align = TRUE,                    # Aligns numbers on decimal points
-          dep.var.labels = "Outcome",      # A clean name for the dependent variable
+          align = TRUE,                   
+          dep.var.labels = "Outcome",     
           column.labels = c("Base Model", "Adds Demographics", "Full Model"),
           covariate.labels = c("After Treatment", "Treatment Group (Grow)", "Age",
                                "Sex", "Population", "Interaction: After x Grow"),
@@ -571,8 +566,7 @@ stargazer(cov_did1, cov_did2, cov_did3,      # List your models
 ```
 
 **Discussion:**
-
-[Does $\beta_3$ change? Do covariates matter? Which specification is most credible?]
+If we have a look at our final regression table, we can definitely observe that the $\beta_3$ coefficient - our interaction coefficient: After x Grow - changes substantially as we add covariates. The estimate decreases from 0.197 in the simple DiD (Model 1) to 0.131 after adding demographics (Model 2), and finally settles at 0.123 in the full model (Model 3). This reduction in the effect clearly suggests that our simple model was suffering from omitted variable bias, since it was attributing some of the effect of demographics and population to the coca boom. By adding all the covariates for the final model (Model 3), we isolate the true effect more accurately. Therefore, Model 3 seems to be the most credible specification - it includes all the covariates we identified as important and unbalanced at baseline. Our most believable estimate of the causal effect of the air-bridge disruption is an increase of 0.123 in the logged per-capita violent death rate, which is statistically significant at the 10% level. We can also see that the covariates are incredibly strong predictors. Just by adding **age** and **sex** in Model 2 causes the $R^2$ to jump from $0.9\%$ to $35\%$.
 
 ---
 
