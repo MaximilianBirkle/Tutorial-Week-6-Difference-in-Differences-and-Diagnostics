@@ -551,7 +551,7 @@ cov_did3 <- lm(outcome ~ after + grow + after:grow + age + sex + populati, data 
 
 ```
 
-```{r q11-comparison}
+```{r q11-comparison, results='asis'}
 # Compare models
 stargazer(cov_did1, cov_did2, cov_did3,     
           type = "latex",                 
