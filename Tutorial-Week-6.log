@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.25)  25 OCT 2025 13:15
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.25)  25 OCT 2025 13:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -566,8 +566,17 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 ) (c:/Users/Anwender/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
 File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
 \BKM@id=\count342
-))
-No file Tutorial-Week-6.aux.
+)) (./Tutorial-Week-6.aux
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+)
 \openout1 = `Tutorial-Week-6.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 129.
@@ -864,9 +873,6 @@ Package microtype Info: No adjustment of kerning.
 File: mt-LatinModernRoman.cfg 2021/02/21 v1.1 microtype config. file: Latin Modern Roman (RS)
 )
 Package hyperref Info: Link coloring OFF on input line 129.
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 12.0pt on input line 131.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
@@ -900,8 +906,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 131.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/Users/Anwender/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-)
-No file Tutorial-Week-6.toc.
+) (./Tutorial-Week-6.toc)
 \tf@toc=\write4
 \openout4 = `Tutorial-Week-6.toc'.
 
@@ -928,11 +933,10 @@ LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 [1
 
 ]
-File: Tutorial-Week-6_files/figure-latex/q2-density-plots-simple-1.pdf Graphic file (type pdf)
-<Tutorial-Week-6_files/figure-latex/q2-density-plots-simple-1.pdf>
-
 
 [2]
+File: Tutorial-Week-6_files/figure-latex/q2-density-plots-simple-1.pdf Graphic file (type pdf)
+<Tutorial-Week-6_files/figure-latex/q2-density-plots-simple-1.pdf>
 File: Tutorial-Week-6_files/figure-latex/q2-density-plots-gender-1.pdf Graphic file (type pdf)
 <Tutorial-Week-6_files/figure-latex/q2-density-plots-gender-1.pdf>
 
@@ -968,11 +972,6 @@ File: Tutorial-Week-6_files/figure-latex/q4-visual-trends-1.pdf Graphic file (ty
 
 [11]
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3 on input line 760.
-
-
-
 [12]
 
 [13]
@@ -982,25 +981,30 @@ Package longtable Warning: Column widths have changed
 [15]
 
 [16]
+Overfull \hbox (22.91504pt too wide) in paragraph at lines 1186--1227
+ [][] 
+ []
 
-! Package array Error:  Illegal pream-token (D): `c' used.
 
-See the array package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1186 ...}}lD{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} }
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
 
- 
+[17]
+
+[18] (./Tutorial-Week-6.aux)
+ ***********
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-10-09>
+ ***********
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 19359 strings out of 470343
- 358655 string characters out of 5482111
- 941365 words of memory out of 5000000
- 47491 multiletter control sequences out of 15000+600000
+ 19382 strings out of 470343
+ 359177 string characters out of 5482111
+ 943238 words of memory out of 5000000
+ 47509 multiletter control sequences out of 15000+600000
  634164 words of font info for 92 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  90i,12n,114p,1012b,567s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on Tutorial-Week-6.pdf (16 pages).
+
+Output written on Tutorial-Week-6.pdf (18 pages).
