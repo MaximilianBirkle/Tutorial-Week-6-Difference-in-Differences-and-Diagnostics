@@ -499,52 +499,43 @@ stargazer(
 **Interpretation:**
 The $\beta_3$ coefficient of our interaction term **after:grow** is 0.19702 with a p-value of 0.0256. Since the p-value is less than 0.05, the effect is statistically significant, which means that the effect of 0.19072 is not just a random fluctuation. After controlling for pre-existing differences between the regions (**grow**) and for general time trends affecting all of Colombia (**after**), the air-bridge disruption caused a significant increase in the logged per-capita violent death rate of 0.197 in the coca growing regions. 
 
+\newpage
+
 **Analytical proof:**
-We want to show that the coefficient $\beta_3$ from the regression equation is mathematically identical to the manual Difference-in-Differences calculation: $(\bar{Y}_{1,1} - \bar{Y}_{1,0}) - (\bar{Y}_{0,1} - \bar{Y}_{0,0})$.
+
+We want to show that $\beta_3$ in the regression model represents the Difference-in-Differences (DiD) estimate.
+
+Let $Y$ be the outcome, $G$ be the treatment group indicator ($G=1$ for `grow`, 0 otherwise), and $P$ be the post-treatment period indicator ($P=1$ for `after`, 0 otherwise).
 
 The regression model is:
 $$
-\texttt{outcome} = \beta_0 + \beta_1\,\texttt{after} + \beta_2\,\texttt{grow} + \beta_3\,(\texttt{after}\times\texttt{grow}) + u
+Y = \beta_0 + \beta_1 P + \beta_2 G + \beta_3 (P \times G) + u
 $$
+The expected value of the outcome $Y$ conditional on the group and period is:
+$$
+E[Y | G, P] = \beta_0 + \beta_1 P + \beta_2 G + \beta_3 (P \times G)
+$$
+This gives us the expected value for each of the four groups:
 
-We can find the expected value (the mean, $\bar{Y}$) for each of our four groups by plugging in 0s and 1s for the dummy variables.
+* **Control, Before ($G=0, P=0$):** $E[Y | G=0, P=0] = \beta_0$
+* **Control, After ($G=0, P=1$):** $E[Y | G=0, P=1] = \beta_0 + \beta_1$
+* **Treatment, Before ($G=1, P=0$):** $E[Y | G=1, P=0] = \beta_0 + \beta_2$
+* **Treatment, After ($G=1, P=1$):** $E[Y | G=1, P=1] = \beta_0 + \beta_1 + \beta_2 + \beta_3$
 
-1.  **Control Group (grow=0), Before (after=0):**
-    $$
-    \bar{Y}_{0,0} = \beta_0 + \beta_1(0) + \beta_2(0) + \beta_3(0 \times 0) = \boldsymbol{\beta_0}
-    $$
-
-2.  **Control Group (grow=0), After (after=1):**
-    $$
-    \bar{Y}_{0,1} = \beta_0 + \beta_1(1) + \beta_2(0) + \beta_3(1 \times 0) = \boldsymbol{\beta_0 + \beta_1}
-    $$
-
-3.  **Treatment Group (grow=1), Before (after=0):**
-    $$
-    \bar{Y}_{1,0} = \beta_0 + \beta_1(0) + \beta_2(1) + \beta_3(0 \times 1) = \boldsymbol{\beta_0 + \beta_2}
-    $$
-
-4.  **Treatment Group (grow=1), After (after=1):**
-    $$
-    \bar{Y}_{1,1} = \beta_0 + \beta_1(1) + \beta_2(1) + \beta_3(1 \times 1) = \boldsymbol{\beta_0 + \beta_1 + \beta_2 + \beta_3}
-    $$
-
-Now, we substitute these four equations into the manual DiD formula:
+The DiD parameter, let's call it $\delta$, is defined as the difference in the "after-before" change for the treatment group and the "after-before" change for the control group:
 
 $$
-DiD = (\bar{Y}_{1,1} - \bar{Y}_{1,0}) - (\bar{Y}_{0,1} - \bar{Y}_{0,0})
+\delta = \Big( E[Y | G=1, P=1] - E[Y | G=1, P=0] \Big) - \Big( E[Y | G=0, P=1] - E[Y | G=0, P=0] \Big)
 $$
-
-We can use the `align*` environment to show the substitution and simplification clearly:
-
+Now, we substitute the regression coefficients into this formula. The `align*` environment provides a clean, step-by-step simplification:
+$$
 \begin{align*}
-DiD &= \left[ (\beta_0 + \beta_1 + \beta_2 + \beta_3) - (\beta_0 + \beta_2) \right] - \left[ (\beta_0 + \beta_1) - (\beta_0) \right] \\
-&= \left[ \beta_1 + \beta_3 \right] - \left[ \beta_1 \right] \\
-&= \boldsymbol{\beta_3}
+\delta &= \Big( (\beta_0 + \beta_1 + \beta_2 + \beta_3) - (\beta_0 + \beta_2) \Big) - \Big( (\beta_0 + \beta_1) - \beta_0 \Big) \\
+&= \Big( \beta_1 + \beta_3 \Big) - \Big( \beta_1 \Big) \\
+&= \beta_3
 \end{align*}
-
-This proves that the coefficient on the interaction term, $\beta_3$, is mathematically identical to the Difference-in-Differences estimate.
-
+$$
+This proves that the coefficient on the interaction term, $\beta_3$, is mathematically identical to the Difference-in-Differences estimate $\delta$.
 ---
 
 # Q11. Adding Covariates
