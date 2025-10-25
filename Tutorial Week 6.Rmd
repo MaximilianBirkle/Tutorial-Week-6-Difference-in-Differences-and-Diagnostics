@@ -556,7 +556,7 @@ cov_did3 <- lm(outcome ~ after + grow + after:grow + age + sex + populati, data 
 stargazer(cov_did1, cov_did2, cov_did3,     
           type = "latex",                 
           title = "Regression Results: The Effect of Treatment on Outcome",
-          align = TRUE,                   
+          align = FALSE,                   
           dep.var.labels = "Outcome",     
           column.labels = c("Base Model", "Adds Demographics", "Full Model"),
           covariate.labels = c("After Treatment", "Treatment Group (Grow)", "Age",
