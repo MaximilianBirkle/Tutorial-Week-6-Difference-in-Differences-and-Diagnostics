@@ -253,18 +253,39 @@ dta_pretreatment <- dta %>%
          outcome = log((violent + 1) / (populati + 1)))
 ```
 
-```{r q4-parallel-trends-linear}
+```{r q4-parallel-trends-linear-categorical, results='asis'}
 # Model with year as linear
 year_linear <- lm(outcome ~ year + grow + year:grow, data = dta_pretreatment)
 
-summary(year_linear)
-```
-
-```{r q4-parallel-trends-categorical}
 # Model with year as categorical (factor)
 year_factor <- lm(outcome ~ factor(year) + grow + factor(year):grow, data = dta_pretreatment)
 
-summary(year_factor)
+# Stargazer table for better visualization
+
+# 1. Define the professional labels for your variables.
+pro_labels <- c(
+  "Coca-Growing Region",              # for 'grow'
+  "Year (Linear) &times; Growing Region", # for 'year:grow' (use &times; for HTML)
+  "1991 &times; Growing Region",          # for 'factor(year)1991:grow'
+  "1992 &times; Growing Region",          # for 'factor(year)1992:grow'
+  "1993 &times; Growing Region",          # for 'factor(year)1993:grow'
+  "Constant"                        # for the intercept
+)
+
+# 2. Run stargazer with new arguments
+stargazer(
+  year_linear, year_factor,
+  type = "latex", 
+  title = "Table 1: Pre-Treatment Parallel Trends Test",
+  header = FALSE,
+  column.labels = c("Linear Trend", "Categorical Trend"),
+  dep.var.labels = "Logged Per-Capita Violent Death Rate",
+  keep = "grow|Constant",
+  covariate.labels = pro_labels,
+  no.space = TRUE,
+  omit.stat = c("adj.rsq", "ser","rsq")
+)
+
 ```
 
 ```{r q4-joint-test}
