@@ -337,10 +337,30 @@ dta_placebo <- dta %>%
   )
 ```
 
-```{r q5-placebo-regression}
+```{r q5-placebo-regression, results='asis'}
 # Estimate placebo DiD model
 placebo_did <- lm(outcome ~ placebo_after + grow + placebo_after:grow, data = dta_placebo)
-summary(placebo_did)
+
+# Create stargazer table
+placebo_labels <- c(
+  "Placebo 'After' (1992-93)",
+  "Coca-Growing Region",
+  "Placebo 'After' $\\times$ Growing Region",
+  "Constant"
+)
+
+# Run stargazer
+stargazer(
+  placebo_did,
+  type = "latex",
+  title = "Table 2: Placebo Difference-in-Differences Test",
+  header = FALSE,
+  column.labels = "Placebo Model",
+  dep.var.labels = "Logged Per-Capita Violent Death Rate",
+  covariate.labels = placebo_labels,
+  no.space = TRUE,
+  omit.stat = c("adj.rsq", "ser", "f", "rsq")
+)
 ```
 
 **Interpretation:**
