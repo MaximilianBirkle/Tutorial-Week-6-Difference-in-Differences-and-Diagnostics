@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.25)  25 OCT 2025 11:57
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.25)  25 OCT 2025 12:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -904,65 +904,63 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 \tf@toc=\write4
 \openout4 = `Tutorial-Week-6.toc'.
 
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 148.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 148.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.00092pt on input line 148.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.00064pt on input line 148.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00046pt on input line 148.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 148.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 148.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 148.
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 138.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 154.
 
 
 [1
 
 ]
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 184.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 184.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 184.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 184.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 184.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 184.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 184.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 184.
-
 
 [2]
 File: Tutorial-Week-6_files/figure-latex/q2-density-plots-simple-1.pdf Graphic file (type pdf)
 <Tutorial-Week-6_files/figure-latex/q2-density-plots-simple-1.pdf>
-
-
-[3]
 File: Tutorial-Week-6_files/figure-latex/q2-density-plots-gender-1.pdf Graphic file (type pdf)
 <Tutorial-Week-6_files/figure-latex/q2-density-plots-gender-1.pdf>
 
 
-[4]
-Overfull \vbox (0.18466pt too high) detected at line 385
+[3]
+Overfull \vbox (0.18466pt too high) detected at line 349
  []
 
 
 
-[5]
+[4]
 File: Tutorial-Week-6_files/figure-latex/q3-age-effects-1.pdf Graphic file (type pdf)
 <Tutorial-Week-6_files/figure-latex/q3-age-effects-1.pdf>
 
 
-[6]
+[5]
 File: Tutorial-Week-6_files/figure-latex/q3-men-age-effects-1.pdf Graphic file (type pdf)
 <Tutorial-Week-6_files/figure-latex/q3-men-age-effects-1.pdf>
 
 
+[6]
+
 [7]
 
 [8]
-
-[9]
 File: Tutorial-Week-6_files/figure-latex/q4-visual-trends-1.pdf Graphic file (type pdf)
 <Tutorial-Week-6_files/figure-latex/q4-visual-trends-1.pdf>
 
+
+[9]
 
 [10]
 
@@ -973,163 +971,161 @@ File: Tutorial-Week-6_files/figure-latex/q4-visual-trends-1.pdf Graphic file (ty
 [13]
 
 [14]
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
+(Font)              scaled to size 10.0pt on input line 1096.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
+(Font)              scaled to size 7.0pt on input line 1096.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
+(Font)              scaled to size 5.0pt on input line 1096.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
+(Font)              scaled to size 10.00092pt on input line 1096.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
+(Font)              scaled to size 7.00064pt on input line 1096.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
+(Font)              scaled to size 5.00046pt on input line 1096.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
+(Font)              scaled to size 9.99893pt on input line 1096.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
+(Font)              scaled to size 6.99925pt on input line 1096.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
+(Font)              scaled to size 4.99947pt on input line 1096.
+
 
 [15]
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 10.0pt on input line 1132.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 7.0pt on input line 1132.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 5.0pt on input line 1132.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 10.00092pt on input line 1132.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 7.00064pt on input line 1132.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 5.00046pt on input line 1132.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 9.99893pt on input line 1132.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 6.99925pt on input line 1132.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 4.99947pt on input line 1132.
-
-
-[16]
-Overfull \hbox (81.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (81.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## ======================================================================================================[] 
  []
 
 
-Overfull \hbox (81.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (81.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ##                           ----------------------------------------------------------------------------[] 
  []
 
 
-Overfull \hbox (39.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (39.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ##                                  Base Model            Adds Demographics            Full Model[] 
  []
 
 
-Overfull \hbox (23.74498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (23.74498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ##                                     (1)                       (2)                       (3)[] 
  []
 
 
-Overfull \hbox (81.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (81.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## ------------------------------------------------------------------------------------------------------[] 
  []
 
 
-Overfull \hbox (39.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (39.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## After Treatment                  -0.141***                 -0.123***                 -0.107***[] 
  []
 
 
-Overfull \hbox (34.24498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (34.24498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ##                                   (0.045)                   (0.036)                   (0.036)[] 
  []
 
 
-Overfull \hbox (34.24498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (34.24498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## Treatment Group (Grow)            0.203***                 0.304***                  0.231***[] 
  []
 
 
-Overfull \hbox (34.24498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (34.24498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ##                                   (0.063)                   (0.051)                   (0.051)[] 
  []
 
 
 
-[17]
-Overfull \hbox (34.24498pt too wide) in paragraph at lines 1249--1249
+[16]
+Overfull \hbox (34.24498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## Age                                                        0.142***                  0.123***[] 
  []
 
 
-Overfull \hbox (34.24498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (34.24498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ##                                                             (0.003)                   (0.004)[] 
  []
 
 
-Overfull \hbox (39.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (39.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## Sex                                                        -1.057***                 -1.057***[] 
  []
 
 
-Overfull \hbox (34.24498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (34.24498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ##                                                             (0.028)                   (0.028)[] 
  []
 
 
-Overfull \hbox (44.74498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (44.74498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## Population                                                                          -0.00000***[] 
  []
 
 
-Overfull \hbox (39.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (39.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ##                                                                                      (0.00000)[] 
  []
 
 
-Overfull \hbox (28.99498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (28.99498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## Interaction: After x Grow         0.197**                   0.131*                    0.123*[] 
  []
 
 
-Overfull \hbox (34.24498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (34.24498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ##                                   (0.088)                   (0.071)                   (0.071)[] 
  []
 
 
-Overfull \hbox (39.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (39.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## Constant                         -8.628***                 -9.162***                 -8.731***[] 
  []
 
 
-Overfull \hbox (34.24498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (34.24498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ##                                   (0.032)                   (0.070)                   (0.079)[] 
  []
 
 
-Overfull \hbox (81.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (81.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## ------------------------------------------------------------------------------------------------------[] 
  []
 
 
-Overfull \hbox (28.99498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (28.99498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## Observations                       6,449                     6,449                     6,449[] 
  []
 
 
-Overfull \hbox (28.99498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (28.99498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## R2                                 0.009                     0.350                     0.363[] 
  []
 
 
-Overfull \hbox (28.99498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (28.99498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## Adjusted R2                        0.008                     0.350                     0.362[] 
  []
 
 
-Overfull \hbox (60.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (60.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## Residual Std. Error          1.550 (df = 6445)         1.256 (df = 6443)         1.244 (df = 6442)[] 
  []
 
 
-Overfull \hbox (81.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (81.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## F Statistic               19.298*** (df = 3; 6445) 693.978*** (df = 5; 6443) 610.532*** (df = 6; 6442)[] 
  []
 
 
-Overfull \hbox (81.49498pt too wide) in paragraph at lines 1249--1249
+Overfull \hbox (81.49498pt too wide) in paragraph at lines 1213--1213
 []\TU/lmtt/m/n/10 ## ======================================================================================================[] 
  []
 
 
 
-[18] (./Tutorial-Week-6.aux)
+[17] (./Tutorial-Week-6.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-09>
@@ -1147,4 +1143,4 @@ Here is how much of TeX's memory you used:
  36 hyphenation exceptions out of 8191
  90i,12n,114p,1012b,583s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Tutorial-Week-6.pdf (18 pages).
+Output written on Tutorial-Week-6.pdf (17 pages).

@@ -471,18 +471,35 @@ By contrast, the difference-in-differences (DiD) estimate is superior because it
 2. Report $\beta_3$ and p-value
 3. Show analytically that $\beta_3$ equals the manual DiD estimate
 
-```{r q10-did-regression}
+```{r q10-did-regression, results='asis'}
 # DiD regression model
 did <- lm(outcome ~ after + grow + after:grow, data = dta_subset)
-summary(did)
+
+did_labels <- c(
+  "After Period (1996-98)",
+  "Coca-Growing Region",
+  "After Period $\\times$ Growing Region",
+  "Constant"
+)
+
+# Run stargazer
+stargazer(
+  did,
+  type = "latex",
+  title = "Table 4: Main Difference-in-Differences Estimate of Coca Boom on Violence",
+  header = FALSE,
+  column.labels = "DiD Model",
+  dep.var.labels = "Logged Per-Capita Violent Death Rate",
+  covariate.labels = did_labels,
+  no.space = TRUE,
+  omit.stat = c("adj.rsq", "ser", "f", "rsq")
+)
 ```
 
 **Interpretation:**
 The $\beta_3$ coefficient of our interaction term **after:grow** is 0.19702 with a p-value of 0.0256. Since the p-value is less than 0.05, the effect is statistically significant, which means that the effect of 0.19072 is not just a random fluctuation. After controlling for pre-existing differences between the regions (**grow**) and for general time trends affecting all of Colombia (**after**), the air-bridge disruption caused a significant increase in the logged per-capita violent death rate of 0.197 in the coca growing regions. 
 
 **Analytical proof:**
-## Analytical Proof
-
 We want to show that the coefficient $\beta_3$ from the regression equation is mathematically identical to the manual Difference-in-Differences calculation: $(\bar{Y}_{1,1} - \bar{Y}_{1,0}) - (\bar{Y}_{0,1} - \bar{Y}_{0,0})$.
 
 The regression model is:
