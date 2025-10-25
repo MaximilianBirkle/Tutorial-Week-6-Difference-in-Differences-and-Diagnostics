@@ -387,7 +387,17 @@ balance_table <- dta_balance %>%
     .groups = "drop"
   )
 
-balance_table
+# Rename 'grow' for clarity before printing
+balance_table <- balance_table %>%
+  mutate(grow = ifelse(grow == 1, "Growing Region (Treat)", "Non-Growing Region (Control)"))
+
+# Table Output 
+knitr::kable(
+  balance_table,
+  caption = "Table 3: Covariate Balance in Pre-Treatment Period (Time 0)",
+  col.names = c("Region Type", "Mean Age", "Mean Sex", "Mean Population"),
+  digits = 2
+)
 ```
 
 **Interpretation:**
