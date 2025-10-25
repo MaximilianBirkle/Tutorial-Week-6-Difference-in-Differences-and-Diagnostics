@@ -504,7 +504,6 @@ The $\beta_3$ coefficient of our interaction term **after:grow** is 0.19702 with
 **Analytical proof:**
 
 We want to show that $\beta_3$ in the regression model represents the Difference-in-Differences (DiD) estimate.
-
 Let $Y$ be the outcome, $G$ be the treatment group indicator ($G=1$ for `grow`, 0 otherwise), and $P$ be the post-treatment period indicator ($P=1$ for `after`, 0 otherwise).
 
 The regression model is:
@@ -527,7 +526,7 @@ The DiD parameter, let's call it $\delta$, is defined as the difference in the "
 $$
 \delta = \Big( E[Y | G=1, P=1] - E[Y | G=1, P=0] \Big) - \Big( E[Y | G=0, P=1] - E[Y | G=0, P=0] \Big)
 $$
-Now, we substitute the regression coefficients into this formula. The `align*` environment provides a clean, step-by-step simplification:
+Now, we substitute the regression coefficients into this formula:
 
 \begin{align*}
 \delta &= \Big( (\beta_0 + \beta_1 + \beta_2 + \beta_3) - (\beta_0 + \beta_2) \Big) - \Big( (\beta_0 + \beta_1) - \beta_0 \Big) \\
