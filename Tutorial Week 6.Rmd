@@ -202,7 +202,7 @@ To explore this interesting trend, we created a graph for the per-capita violent
 ```{r q3-men-age-effects}
 
 age_effects_men <- dta_subset %>%
-  filter(grow == 1, sex == 1) %>% # <- HIER IST DIE ÄNDERUNG
+  filter(grow == 1, sex == 1) %>% 
   group_by(age, after) %>%
   summarise(
     mean_outcome = mean(outcome, na.rm = TRUE),
@@ -215,7 +215,7 @@ age_effects_men <- dta_subset %>%
   ) %>%
   mutate(change = period_1 - period_0)
 
-# Plot der altersspezifischen Effekte für Männer
+# Plot for age specific effects
 age_effects_men %>%
   ggplot(aes(x = age, y = change)) +
   geom_line(color = "blue", size = 1) +
@@ -226,7 +226,7 @@ age_effects_men %>%
     color = "red"
   ) +
   labs(
-    title = "Change in Logged per-capita Violent Death Rate by Age (Men in Coca-Growing Regions)", # <- Titel angepasst
+    title = "Change in Logged per-capita Violent Death Rate by Age (Men in Coca-Growing Regions)", 
     x = "Age",
     y = "Change in Outcome (After - Before)"
   ) +
@@ -407,6 +407,7 @@ did_estimate
 **Interpretation:**
 
 The problem with a simple before-and-after comparison is that it is based on the flawed assumption that the only thing that changed for coca-growing regions between the 'before' and 'after' periods was the disruption to the air bridge. However, it is almost certain that other trends were at play during that time that could have caused changes in violence rates across the entire country, which were completely unrelated to the coca boom. For example, if violence was generally increasing across all of Colombia due to political instability or economic problems, a simple before-after comparison in the growing regions would wrongly attribute all of that increase to the coca boom, unable to distinguish between the effects of the treatment and those of other confounding trends occurring simultaneously.
+
 By contrast, the difference-in-differences (DiD) estimate is superior because it uses non-growing regions (**grow** = 0) as a counterfactual to address this issue. The logic is that the difference between the 'after' and 'before' periods in the non-growing regions acts as a benchmark, essentially capturing the change in violence due to all those other nationwide factors. The difference in the growing regions, however, captures the same 'background trend' plus the true causal effect of the coca boom. By subtracting the control group's change from the treatment group's change, we can effectively control for the background trend, provided the crucial parallel trends assumption holds (which our Q4 and Q5 tests suggest it does ). This isolates the true causal effect.
 
 ---
