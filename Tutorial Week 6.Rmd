@@ -195,9 +195,9 @@ age_effects %>%
 
 This plot illustrates how the average violence rate changes for each age group by calculating the difference between the average violence rate for an age group after the air-bridge disruption and the average violence rate for that same group before the disruption. Clearly, the plot shows that the effect varies dramatically across different age groups, with a concentration in certain age brackets. The increase in conflict and violence seems to have disproportionately affected individuals of fighting age, as can be seen from the peaks in the graph between the ages of 17 and 22. Additionally, younger adolescents around the age of 10 seem to have been particularly involved in violent activities, resulting in a much higher death rate after the air disruption. However, it is important to note that, for a few age groups — especially those around 15 years old — the rate of violence decreased after the air disruption. 
 
-This seemingly volatile distribution across age groups reveals a key insight. If the increase in violence was solely due to increased criminal activity, we would most likely see it concentrated among cohorts that met the age of fighting and above. However, since we cearly see that also much younger age groups show an increase in violent deaths, we can conclude that this is mostly caused by conflict-related violence (e.g. civil war) after the 'air bridge' intervention, which corresponds to the paper's findings. 
+This seemingly volatile distribution across age groups reveals a key insight. If the increase in violence was solely due to increased criminal activity, we would most likely see it concentrated among cohorts that met the age of fighting and above. However, since we cleary see that also much younger age groups show an increase in violent deaths, we can conclude that this is mostly caused by conflict-related violence (e.g. civil war) after the 'air bridge' intervention, which corresponds to the paper's findings. 
 
-To explore this interesting trend, we created a graph for the per-capita violent death rate in coca-growing regions before and after for men only. What we can see here is that the increase in violence was not confined by the typical "fighting age" bracket but was high across the entire youg male distribution, including children around 10. This pattern strongly suggests widespread, conflict-related violence. The coca boom fueled this by creating two distinct sets of victims: older cohorts were recruited as soldiers, while younger boys, drawn in as laborers, became collateral damage in the armed groups' fight to control the coca fields and labor force .
+To explore this interesting trend, we created a graph for the per-capita violent death rate in coca-growing regions before and after for men only. What we can see here is that the increase in violence was not confined by the typical "fighting age" bracket but was high across the entire young male distribution, including children around 10. This pattern strongly suggests widespread, conflict-related violence. The coca boom fueled this by creating two distinct sets of victims: older cohorts were recruited as soldiers, while younger boys, drawn in as laborers, became collateral damage in the armed groups' fight to control the coca fields and labor force. The overall increased death rate of civillians may also have driven this trend.
 
 ```{r q3-men-age-effects}
 
@@ -351,7 +351,7 @@ balance_table
 
 **Interpretation:**
 
-In the balance check, we check if the treatment and control groups looked similar before the treatment started, by grouping the pre-treatment data into treatment (growing regions) and control group (non-growing regions) and calculating the mean for the variables age, sex, and populati . This is critical for DiD validity because the entire method relies on the assumption that the control group serves as a valid counterfactual for the treatment group. If the groups already were different before the treatment, we couldn't be sure if a later change in violence was due to the treatment (the coca boom) or those pre-existing differences. This serves as a useful addition to the placebo test. While in the placebo test, we checked if trends in the outcome (violence) were already diverging before treatment , the balance check compares the average levels of group characteristics (like age or population) at the start, helping us to select a control group that is at least plausibly similar to the treatment group before the treatment. This is also the reason why the authors, unfortunately, do not compare the coca-growing regions in Colombia to Neckarstadt West, as the two groups would be widely imbalanced on various key characteristics.
+In the balance check, we check if the treatment and control groups looked similar before the treatment started, by grouping the pre-treatment data into treatment (growing regions) and control group (non-growing regions) and calculating the mean for the variables age, sex, and populati . This is critical for DiD validity because the entire method relies on the assumption that the control group serves as a valid counterfactual for the treatment group. If the groups already were different before the treatment, we couldn't be sure if a later change in violence was due to the treatment (the coca boom) or those pre-existing differences. This serves as a useful addition to the placebo test. While in the placebo test, we checked if trends in the outcome (violence) were already diverging before treatment , the balance check compares the average levels of group characteristics (like age or population) at the start, helping us to select a control group that is at least plausibly similar to the treatment group before the treatment. This is also the reason why the authors, unfortunately, do not compare the coca-growing regions in Colombia to Neckarstadt West, as the two groups would be widely imbalanced on various key characteristics, even if there were parallel trends in the outcome (logged per-capita violent death rate) before treatment application.
 In our results , we can see that age is almost perfectly balanced (15.5 vs 15.6), and sex is mostly balanced (1.51 vs 1.59). Regarding populati, we see a large imbalance, where the treatment regions (40,541) are almost half as populated as the control regions (78,301). This strongly suggests that coca cultivation didn't just appear anywhere, but rather "selected into" areas that were already systematically more rural and less populated. Considering that large imbalance, we would have to worry about it, as we could not rule out the difference of being more rural as the real reason for a change in violence and not the treatment. However, looking at our previous tests, despite the imbalance, the trends in violence were parallel before the treatment . The authors try to address this issue, by making the groups more comparable. They drop the departments with the largest cities (like Bogota) from the control group in their main analysis. So by making groups slightly more comparable and having secured before that we have parallel trends before the treatment, we can still be confident in the analysis.
 
 ---
@@ -436,6 +436,7 @@ The regression model is:
 $$
 \texttt{outcome} = \beta_0 + \beta_1\,\texttt{after} + \beta_2\,\texttt{grow} + \beta_3\,(\texttt{after}\times\texttt{grow}) + u
 $$
+
 We can find the expected value (the mean, $\bar{Y}$) for each of our four groups by plugging in 0s and 1s for the dummy variables.
 
 1.  **Control Group (grow=0), Before (after=0):**
@@ -457,6 +458,7 @@ We can find the expected value (the mean, $\bar{Y}$) for each of our four groups
     $$
     \bar{Y}_{1,1} = \beta_0 + \beta_1(1) + \beta_2(1) + \beta_3(1 \times 1) = \boldsymbol{\beta_0 + \beta_1 + \beta_2 + \beta_3}
     $$
+
 Now, we substitute these four equations into the manual DiD formula:
 
 $$
@@ -465,13 +467,12 @@ $$
 
 We can use the `align*` environment to show the substitution and simplification clearly:
 
-$$
 \begin{align*}
 DiD &= \left[ (\beta_0 + \beta_1 + \beta_2 + \beta_3) - (\beta_0 + \beta_2) \right] - \left[ (\beta_0 + \beta_1) - (\beta_0) \right] \\
 &= \left[ \beta_1 + \beta_3 \right] - \left[ \beta_1 \right] \\
 &= \boldsymbol{\beta_3}
 \end{align*}
-$$
+
 This proves that the coefficient on the interaction term, $\beta_3$, is mathematically identical to the Difference-in-Differences estimate.
 
 ---
