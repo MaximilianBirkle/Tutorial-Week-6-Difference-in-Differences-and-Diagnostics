@@ -528,13 +528,13 @@ $$
 \delta = \Big( E[Y | G=1, P=1] - E[Y | G=1, P=0] \Big) - \Big( E[Y | G=0, P=1] - E[Y | G=0, P=0] \Big)
 $$
 Now, we substitute the regression coefficients into this formula. The `align*` environment provides a clean, step-by-step simplification:
-$$
+
 \begin{align*}
 \delta &= \Big( (\beta_0 + \beta_1 + \beta_2 + \beta_3) - (\beta_0 + \beta_2) \Big) - \Big( (\beta_0 + \beta_1) - \beta_0 \Big) \\
 &= \Big( \beta_1 + \beta_3 \Big) - \Big( \beta_1 \Big) \\
 &= \beta_3
 \end{align*}
-$$
+
 This proves that the coefficient on the interaction term, $\beta_3$, is mathematically identical to the Difference-in-Differences estimate $\delta$.
 ---
 
